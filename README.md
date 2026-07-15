@@ -101,5 +101,17 @@ For each scenario in a session, the computing engine executes sequentially:
 
 ---
 
+## 🌐 Deployed Split-Deployment Architecture
+
+This project is deployed across two platforms to optimize resource requirements and runtime performance:
+1. **Frontend**: Deployed on **Vercel** as a static Single Page Application (SPA). Vercel provides fast global CDN hosting and handles client-side routing rewrites (`vercel.json`) for smooth route transitions.
+2. **Backend**: Deployed on **Railway** as a containerized Java Spring Boot service connected to a managed **MySQL** database. Railway hosts long-running JVM instances and automatically maps database ports and credentials.
+
+### Why Split-Deployment?
+- **Server constraints**: Vercel does not support long-running processes (like Java Spring Boot servers). By hosting the static assets on Vercel and the backend service on Railway, we ensure the backend can listen to requests continuously while avoiding platform runtime limitations.
+- **Dedicated Database**: Railway provides an integrated managed MySQL service out-of-the-box, simplifying schema updates and avoiding server database maintenance.
+
+---
+
 ## 📝 Disclaimer
 *Estimates based on historical data and AI reasoning — always verify with official sources before travel.*
