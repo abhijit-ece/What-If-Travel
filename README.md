@@ -113,5 +113,32 @@ This project is deployed across two platforms to optimize resource requirements 
 
 ---
 
+## 🛠️ Vercel Deployment Guide (Fixing 404 NOT_FOUND)
+
+If you deploy this monorepo repository directly to Vercel, it may result in a **404: NOT_FOUND** error on the home page because Vercel looks for files at the repository root by default. 
+
+To configure your Vercel deployment correctly:
+
+1. **Set the Root Directory**:
+   - Go to your **Vercel Dashboard** and open your project.
+   - Go to **Settings** > **General**.
+   - Locate the **Root Directory** field, and set it to **`frontend`**.
+   - Save the changes.
+   - *This tells Vercel to change directories into the React project (`frontend`) before runing the build and server configuration.*
+
+2. **Configure the API Backend URL**:
+   - In **Settings** > **Environment Variables**.
+   - Add a new environment variable:
+     - **Key**: `VITE_API_BASE_URL`
+     - **Value**: `https://your-backend-railway-url.app` (replace with your active Railway/Render Spring Boot backend URL).
+   - Save the environment variable.
+
+3. **Deploy**:
+   - Go to the **Deployments** tab and click **Redeploy** or push a new commit to your git repository to trigger a build.
+   - Vercel will now install packages, build the client app with Vite, and serve the single-page application correctly using the rewrite rules defined in `frontend/vercel.json`.
+
+
+---
+
 ## 📝 Disclaimer
 *Estimates based on historical data and AI reasoning — always verify with official sources before travel.*
